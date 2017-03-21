@@ -78,6 +78,7 @@ class WDSparqlQueries(object):
         filter (lang(?description) = "en").
         OPTIONAL {?chr qualifier:P2249 ?refSeq.}
          }'''
+
         query = preQuery.replace('{TAXID}', self.taxid)
         results = self.execute_query(queryPrefixes + query)
         return results['results']['bindings']
@@ -107,7 +108,6 @@ class WDSparqlQueries(object):
         query = preQuery.replace('{TAXID}', self.taxid)
         results = self.execute_query(queryPrefixes + query)
         return results['results']['bindings']
-
 
 
 

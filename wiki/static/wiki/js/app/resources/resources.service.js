@@ -388,9 +388,17 @@ var url = 'http://www.ebi.ac.uk/europepmc/webservices/rest/search?query=CT681&re
 angular
     .module('resources')
     .factory('locusTag2Pub', function ($http) {
-        var getlocusTag2Pub = function (val) {
-            var endpoint = 'http://www.ebi.ac.uk/europepmc/webservices/rest/search?query=chlamydia%20{locusTag}&format=json';
-            var url = endpoint.replace('{locusTag}', val);
+        var getlocusTag2Pub = function (organism, locusTag) {
+            var endpoint = 'http://www.ebi.ac.uk/europepmc/webservices/rest/search?query=_organism,_locusTag&format=json';
+            var mapObj = {
+                _organism: organism,
+                _locusTag: locusTag
+
+            };
+            var url = endpoint.replace(/_organism|_locusTag/gi, function(matched){
+                return mapObj[matched]
+            });
+            console.log(url);
             return $http.get(url)
                 .success(function (response) {
                     return response;

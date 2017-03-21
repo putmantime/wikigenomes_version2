@@ -3,7 +3,7 @@ angular
     .component('mainPage', {
         controller: function ($filter,
                               $location,
-                              allChlamOrgs,
+                              allOrgs,
                               wdGetEntities,
                               entrez2QID,
                               orthoData,
@@ -16,6 +16,14 @@ angular
             //Main gene page component.
             var ctrl = this;
             ctrl.$onInit = function () {
+                allOrgs.getAllOrgs(function (data) {
+                    ctrl.orgList = data;
+                    ctrl.currentOrg = $filter('getJsonItemOrg')('taxid', ctrl.currentTaxid, ctrl.orgList);
+                    if (ctrl.currentOrg == undefined) {
+                        alert("not a valid taxonomy id");
+                        $location.path('/');
+                    }
+                });
                 ctrl.currentTaxid = $location.path().split("/")[2];
                 ctrl.currentEntrez = $location.path().split("/")[4];
                 ctrl.currentGene = {};
@@ -24,7 +32,6 @@ angular
                     ctrl.currentGene.geneQID = $filter('parseQID')(data.data.results.bindings[0].gene.value);
                     wdGetEntities.wdGetEntities(ctrl.currentGene.geneQID).then(function (data) {
                         var entity = data.entities[ctrl.currentGene.geneQID];
-                        //console.log(entity);
                         ctrl.currentGene.entrez = ctrl.currentEntrez;
                         ctrl.currentGene.geneLabel = entity.labels.en.value;
                         ctrl.currentGene.locusTag = entity.claims.P2393[0].mainsnak.datavalue.value;
@@ -79,7 +86,10 @@ angular
                             ctrl.annotations.mutants = ctrl.mutantData;
                         });
                         var locus_tag = ctrl.currentGene.locusTag.replace('_', '');
-                        locusTag2Pub.getlocusTag2Pub(locus_tag).then(function (data) {
+                        var orgName = ctrl.currentOrg.taxonLabel.split(' ');
+
+                        console.log(orgName);
+                        locusTag2Pub.getlocusTag2Pub(orgName, locus_tag).then(function (data) {
                             console.log(data);
                             ctrl.annotations.pubList = data.data.resultList.result;
                         });
@@ -151,14 +161,6 @@ angular
                                 console.log(ctrl.annotations.ecnumber);
                             });
 
-                    });
-                    allChlamOrgs.getAllOrgs(function (data) {
-                        ctrl.orgList = data;
-                        ctrl.currentOrg = $filter('getJsonItemOrg')('taxid', ctrl.currentTaxid, ctrl.orgList);
-                        if (ctrl.currentOrg == undefined) {
-                            alert("not a valid taxonomy id");
-                            $location.path('/');
-                        }
                     });
 
 

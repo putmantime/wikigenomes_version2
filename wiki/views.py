@@ -37,8 +37,8 @@ def wd_oauth(request):
             'wikimediaURL': mw_redirect
         }
         return JsonResponse(response_data)
+
 @ensure_csrf_cookie
 def oauth_response(request):
-
     context = {'data': 'None'}
     return render(request, "wiki/index.html", context=context)

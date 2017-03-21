@@ -166,10 +166,13 @@ class FeatureDataRetrieval(object):
                     'uri': gene['uri']['value'],
                     'locusTag': gene['name']['value'],
                     'label': gene['description']['value'],
-                    'refSeq': gene['refSeq']['value'],
                     'taxid': self.taxid,
                     'timestamp': strftime("%Y-%m-%d %H:%M:%S", gmtime())
                 }
+                if 'refSeq' in gene.keys():
+                    geneObj['refSeq'] = gene['refSeq']['value']
+                else:
+                    geneObj['refSeq'] = 'none'
                 tidGeneList.append(geneObj)
             deletion_result = self.genes.delete_many({"taxid": self.taxid})
             result = self.genes.insert_many(tidGeneList)

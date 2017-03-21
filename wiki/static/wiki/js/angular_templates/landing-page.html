@@ -2,6 +2,7 @@
     a {
         color: whitesmoke
     }
+
     .carousel-control.left, .carousel-control.right {
         background-image: none
     }
@@ -9,16 +10,20 @@
 <div class="container-fluid main-landing-page" style="padding: 50px">
     <div class="row">
         <div class="col-md-12">
-            <h1>Welcome to ChlamBase.org</h1>
+            <h1>Welcome to WikiGenomes.org</h1>
 
             <h3>An open, editable, and centralized model organism database <br> for
                 the
-                chlamydial research community.</h3>
+                biological research community.</h3>
         </div>
     </div>
-
-    <div style="padding: 40px">
-        <organism-tree orgs="$ctrl.orgList"></organism-tree>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10"
+             style="padding: 5px">
+            <img style="max-height: 400px" id="hpylori" src="static/wiki/img/Hpylori2.png">
+        </div>
+        <div class="col-md-1"></div>
     </div>
     <div class="row">
         <div class="col-md-3"></div>
@@ -48,44 +53,70 @@
         </div>
         <div class="col-md-3"></div>
     </div>
-
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10"
-             style="padding: 60px">
-            <h2>See what's happening in the most recent <i><strong>Chlamydia</strong></i> Related Research:</h2>
-            <div style="background-color: transparent; padding-top: 30px;">
-                <div style="height: 100px;" class="carousel slide" data-ride=carousel id="slider">
-                    <div class="carousel-inner" role="listbox">
-                        <div style="text-align: center;padding-left: 20%; padding-right: 20%" class="item"
-                             ng-class="{active:!$index}"
-                             ng-repeat="pub in $ctrl.recentPubs">
-                            <a target="_blank" href="https://www.ncbi.nlm.nih.gov/pubmed/{{pub.id}}">
-                                <div><strong><h3>{{pub.title}}</h3></strong></div>
-                                <div><strong><i>{{pub.journalInfo.journal.title}}</i></strong></div>
-                                <div>{{pub.authorList.author[0].fullName}} <i>et al.</i>
-                                    {{pub.journalInfo.printPublicationDate | date}}
-                                </div>
-                                <div>PMID: {{pub.id}}</div>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-                <div>
-                    <a class="left carousel-control" data-target="#slider" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" data-target="#slider" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-md-1"></div>
-    </div>
 </div>
 
+
+
+<!--<div class="container-fluid main-landing-page">-->
+
+<!--<div class="row">-->
+<!--<div class="col-md-12">-->
+<!--<h1>Welcome to WikiGenomes.org</h1>-->
+
+<!--<h3 style="margin-top: 50px">A freely open, editable, and centralized model organism database <br> for the-->
+<!--biological research community.</h3>-->
+<!--<h4>powered by Wikidata</h4>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+<!--<div class="col-md-3"></div>-->
+<!--<div class="col-md-6">-->
+<!--<div id="indexFormModule">-->
+
+
+<!--<form class="main-form-div  ui-widget">-->
+<!--<div class="form-group">-->
+<!--<label for="indexForm"></label>-->
+<!--<input type="text" class="form-control formborders" id="indexForm"-->
+<!--placeholder="e.g. Helicobacter pylori 26695" name="orgFormItem">-->
+
+<!--</div>-->
+<!--</form>-->
+<!--<h4>Start typing the name of an organism or click the example link below to continue.</h4>-->
+<!--<a id="loadHpylori" href=""><h4><u><i>Helicobacter pylori 26695</i></u></h4></a>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-md-3"></div>-->
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-md-3"></div>-->
+<!--<div class="col-md-6"><img id="hpylori" src="{%  static 'cmod_main/img/Hpylori2.png'%}"></div>-->
+<!--<div class="col-md-3"></div>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+<!--<div class="col-md-3"></div>-->
+<!--<div class="col-md-6">For more information about WikiGenomes read our new BioRxiv PrePrint: <br/>-->
+<!--<a target="_blank" href="http://biorxiv.org/content/early/2017/01/24/102046">-->
+<!--WikiGenomes: an open Web application for community consumption and-->
+<!--curation of gene annotation data in Wikidata.</a>-->
+<!--</div>-->
+<!--<div class="col-md-3"></div>-->
+<!--</div>-->
+
+<!--<div class="row">-->
+<!--<div class="col-xs-1"></div>-->
+<!--<ul id="footerList" class="nav nav-pills">-->
+
+<!--<li class="hoverBlue centerText col-xs-2"><a href="#aboutWG" data-toggle="modal">About WikiGenomes</a></li>-->
+<!--<li class="hoverBlue centerText col-xs-2"><a href="#help" data-toggle="modal">Help</a></li>-->
+<!--<li class="hoverBlue centerText col-xs-2"><a href="#code" data-toggle="modal">Source</a></li>-->
+<!--<li class="hoverBlue centerText col-xs-2"><a href="#licensing" data-toggle="modal">Terms of Use</a></li>-->
+<!--<li class="hoverBlue centerText col-xs-2"><a href="#contact" data-toggle="modal">Contact</a></li>-->
+
+<!--</ul>-->
+<!--<div class="col-xs-1"></div>-->
+
+
+<!--</div>-->
