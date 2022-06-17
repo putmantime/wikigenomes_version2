@@ -30,7 +30,7 @@ matplotlib==1.5.3
 mongoengine==0.10.6
 mwoauth==0.2.8
 mygene==2.2.0
-numpy==1.9.2
+numpy==1.21.0
 oauthlib==1.0.3
 pandas==0.16.2
 pika==0.10.0
